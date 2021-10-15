@@ -1,18 +1,38 @@
-chaque table correspond a une classe
-Par classe
-	-get 
-	-set
+Crée les classes pour chaque table
 
-import/export from XML
+Implémenter stockage colonne
 
-Multi threading 
+Uploade data to structures
 
-Projection 
+Rapport 
 
-Selection
+Sélection des algorithmes à implémenter
 
-Join 
+Implémentation des algorithmes:
+projection
+sélection
+join
+group by
+sum/avg
 
-Group By
+Multi threadings
 
-Sum
+store sur disk 
+
+HDFS?! (déterminer ce que c'est)
+
+[50%]   Baseline implementation:
+    1 thread
+    Any storage layout, stored in the main memory
+    All operators
+Statut ->
+[15%] Spark support
+Statut -> impossible 
+[10%] Multi-threaded support
+Statut -> pas fait
+[10%] Column-store & Row-store support
+Statut ->
+[10%] HDFS support
+Statut ->
+[5%] Disk support
+Statut ->
