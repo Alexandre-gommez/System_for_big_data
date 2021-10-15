@@ -6,7 +6,7 @@ using namespace std;
 using Identifier = int;
 using Integer = int;
 using Decimal = double;
-using Text = char[];
+using Text = char[200];
 
 
 enum class Type {
@@ -14,12 +14,9 @@ enum class Type {
 };
 
 class ColBase {
-  int size;
-  Type type;
-
 public:
-  int get_size() { return size; }
-  Type get_type() { return type; }
+  int size = 0;
+  Type type;
 };
 
 template <class T>
@@ -66,5 +63,15 @@ public:
     cols = {
       &P_PARTKEY, &P_NAME, &P_MFGR, &P_BRAND, &P_TYPE, &P_SIZE, &P_CONTAINER, &P_RETAILPRICE, &P_COMMENT
     };
+
+    P_PARTKEY.type     = Type::Identifier;
+    P_NAME.type        = Type::Text;
+    P_MFGR.type        = Type::Text;
+    P_BRAND.type       = Type::Text;
+    P_TYPE.type        = Type::Text;
+    P_SIZE.type        = Type::Integer;
+    P_CONTAINER.type   = Type::Text;
+    P_RETAILPRICE.type = Type::Decimal;
+    P_COMMENT.type     = Type::Text;
   }
 };
