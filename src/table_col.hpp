@@ -16,7 +16,9 @@ enum class Type {
 class ColBase {
 public:
   int size = 0;
-  Type type;
+  string name;
+
+  virtual void print_values() {};
 };
 
 template <class T>
@@ -25,53 +27,75 @@ class Col : public ColBase {
   vector<T> values;
 
   public:
+
+    Col () {}
+
+    Col (vector<T> vals) {
+      values = vals;
+      size = vals.size();
+    }
+
+    void set_values(vector<T> vals) {
+      values = vals;
+      size = vals.size();
+    }
+
     vector<T> get_values() { return values; }
+
+    void print_values() {
+      cout << name << " :" << endl;
+      for (int i = 0; i < values.size(); i++) {
+        cout << values[i] << endl;
+      }
+    }
+
+    void add_values () {
+      
+  }
 };
 
 class Table {
 public:
-  vector<string> col_names;
+  vector<string> cols_names;
   vector<Type> types;
   int n_cols;
-  vector<ColBase*> cols;
-};
+  vector<ColBase> cols;
 
-class Part : public Table {
+  Table () {}
 
-  Col<Identifier> P_PARTKEY;
-  Col<Text>       P_NAME;
-  Col<Text>       P_MFGR;
-  Col<Text>       P_BRAND;
-  Col<Text>       P_TYPE;
-  Col<Integer>    P_SIZE;
-  Col<Text>       P_CONTAINER;
-  Col<Decimal>    P_RETAILPRICE;
-  Col<Text>       P_COMMENT;
+  Table (vector<string> cn, vector<Type> t) {
+    cols_names = cn;
+    types = t;
+    n_cols = cn.size();
+    for (int i = 0; i < n_cols; i++) {
+      switch (t[i]) {
+        case Type::Identifier: {
+          Col<Identifier> tmp1; tmp1.name = cn[i];
+          cols.push_back(tmp1);
+          break;
+        }
+        case Type::Integer: {
+          Col<Integer> tmp2; tmp2.name = cn[i];
+          cols.push_back(tmp2);
+          break;
+        }
+        case Type::Decimal: {
+          Col<Decimal> tmp3; tmp3.name = cn[i];
+          cols.push_back(tmp3);
+          break;
+        }
+        case Type::Text: {
+          Col<Text> tmp4; tmp4.name = cn[i];
+          cols.push_back(tmp4);
+          break;
+        }
+      }
+    }
+  }
 
-public:
-  Part () {
-    col_names = { 
-      "P_PARTKEY", "P_NAME", "P_MFGR", "P_BRAND", "P_TYPE",
-      "P_SIZE", "P_CONTAINER", "P_RETAILPRICE", "P_COMMENT"
-    };
-    types = { 
-      Type::Identifier, Type::Text, Type::Text, Type::Text, Type::Text, 
-      Type::Integer, Type::Text, Type::Decimal, Type::Text
-    };
-    n_cols = 9;
-    
-    cols = {
-      &P_PARTKEY, &P_NAME, &P_MFGR, &P_BRAND, &P_TYPE, &P_SIZE, &P_CONTAINER, &P_RETAILPRICE, &P_COMMENT
-    };
-
-    P_PARTKEY.type     = Type::Identifier;
-    P_NAME.type        = Type::Text;
-    P_MFGR.type        = Type::Text;
-    P_BRAND.type       = Type::Text;
-    P_TYPE.type        = Type::Text;
-    P_SIZE.type        = Type::Integer;
-    P_CONTAINER.type   = Type::Text;
-    P_RETAILPRICE.type = Type::Decimal;
-    P_COMMENT.type     = Type::Text;
+  void add_values () {
+    for (int i = 0; i < n_cols; i++) {
+      cols[i].add_values();
+    }
   }
 };
