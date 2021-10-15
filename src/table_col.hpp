@@ -19,14 +19,18 @@ public:
   string name;
 
   virtual void print_values() {};
+  //virtual void get_value() {};
+  virtual void add_value() {};
 };
 
 template <class T>
 class Col : public ColBase {
 
-  vector<T> values;
+  
 
   public:
+
+    vector<T> values;
 
     Col () {}
 
@@ -49,9 +53,13 @@ class Col : public ColBase {
       }
     }
 
-    void add_values () {
-      
-  }
+    vector<T> get_values () {
+      return values;
+    }
+
+    void add_value (T val) {
+      values.push_back(val);
+    }
 };
 
 class Table {
@@ -93,9 +101,11 @@ public:
     }
   }
 
-  void add_values () {
+  void add_row (vector<ColBase> row) {
     for (int i = 0; i < n_cols; i++) {
-      cols[i].add_values();
+      cols[i].add_value(row[i].get_values()[0]);
     }
   }
 };
+
+class Part 
