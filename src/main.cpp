@@ -10,6 +10,12 @@ int main() {
   };
   Table part(cols_names, types);
 
+  vector<string> values = { 
+    "5","test1", "test2", "test3", "test4", "10", "test5", "5.5", "test6"
+  };
+
+  part.add_row(values);
+
   for (int i = 0; i < part.m_cols_names.size(); i++)
     cout << part.m_cols_names[i] << endl;
 

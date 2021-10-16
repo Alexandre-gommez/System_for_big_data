@@ -29,11 +29,11 @@ public:
     }
   }
 
-  /*   void add_row(vector<String> data)
+  void add_row(vector<string> data)
   {
-    for (int i = 0; i < n_cols; i++)
+    for (int i = 0; i < m_cols.size(); i++)
     {
-      cols[i].add_value(row[i].get_values()[0]);
+      m_cols[i]->add_value(data[i]);
     }
-  } */
+  } 
 };
