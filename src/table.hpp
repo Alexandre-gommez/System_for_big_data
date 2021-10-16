@@ -1,9 +1,3 @@
-#include <iostream>
-#include <vector>
-#include "col.hpp"
-
-using namespace std;
-
 class Table
 {
 public:

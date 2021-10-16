@@ -1,13 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <string.h>
-
-using namespace std;
-
 class ColBase
 {
 public:
-
   virtual void print_values(){};
   virtual void get_value(){};
   virtual void add_value(string val){};

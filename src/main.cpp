@@ -1,4 +1,13 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string.h>
+
+using namespace std;
+
+#include "col.hpp"
 #include "table.hpp"
+#include "db_loading.hpp"
 
 int main() {
   vector<string> cols_names = { 
@@ -14,6 +23,9 @@ int main() {
     "5","test1", "test2", "test3", "test4", "10", "test5", "5.5", "test6"
   };
 
+  loading("..\\data\\nation.tbl",part);
+  part.add_row(values);
+  part.add_row(values);
   part.add_row(values);
 
   for (int i = 0; i < part.m_cols_names.size(); i++)
