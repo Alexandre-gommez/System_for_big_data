@@ -21,16 +21,9 @@ public:
 
   ColInt() {}
 
-  ColInt(vector<int> vals)
-  {
-    values = vals;
-  }
+  vector<int> get_values() { return values; }
 
-  void set_values(vector<int> vals)
-  {
-    values = vals;
-    size = vals.size();
-  }
+  void add_value(int val) { values.push_back(val); }
 
   void print_values()
   {
@@ -40,10 +33,6 @@ public:
       cout << values[i] << endl;
     }
   }
-
-  vector<int> get_values() { return values; }
-
-  void add_value(int val) { values.push_back(val); }
 };
 
 class ColFloat : public ColBase
@@ -54,15 +43,9 @@ public:
 
   ColFloat() {}
 
-  ColFloat(vector<float> vals)
-  {
-    values = vals;
-  }
+  vector<float> get_values() { return values; }
 
-  void set_values(vector<float> vals)
-  {
-    values = vals;
-  }
+  void add_value(float val) { values.push_back(val); }
 
   void print_values()
   {
@@ -72,8 +55,32 @@ public:
       cout << values[i] << endl;
     }
   }
+};
 
-  vector<float> get_values() { return values; }
+class ColChar : public ColBase
+{
 
-  void add_value(float val) { values.push_back(val); } 
+public:
+  int m_length;
+  vector<char *> values;
+
+  ColChar(int length) { m_length = length; }
+
+  vector<char *> get_values() { return values; }
+
+  void add_value(string val) { 
+    char* temp =(char*)malloc(sizeof(char) * m_length);
+    for (int i =0;i<val.size();i++)
+      temp[i]=val[i];
+    values.push_back(temp); 
+    }
+
+  void print_values()
+  {
+    cout << name << " :" << endl;
+    for (int i = 0; i < values.size(); i++)
+    {
+      cout << values[i] << endl;
+    }
+  }
 };
