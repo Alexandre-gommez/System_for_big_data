@@ -1,6 +1,6 @@
 #include "table.hpp"
 
-void sum(string query_col_name, Table t)
+int sum(string query_col_name, Table t)
 {
     int index = -1;
     for (int i = 0; i < t.m_cols_names.size(); i++) {
@@ -9,17 +9,40 @@ void sum(string query_col_name, Table t)
             break;
         }
     }
-
+    
     if ((t.m_cols_types[index] == ("Integer")) || (t.m_cols_types[index] == ("Float")))
     {
-        cout << "La moyenne de la colonne : " << query_col_name << " est egale a : " << t.m_cols[index]->sum() << endl;
+        //cout << "La somme de la colonne : " << query_col_name << " est egale a : " << t.m_cols[index]->sum() << endl;
+        return t.m_cols[index]->sum();
     }
     else
     {
         cout << "On ne peux sommer le type de cette colonne" << endl;
     }
+    return 0;
 }
 
+int avg(string query_col_name, Table t)
+{
+    int index = -1;
+    for (int i = 0; i < t.m_cols_names.size(); i++) {
+        if (query_col_name == t.m_cols_names[i]) {
+            index = i;
+            break;
+        }
+    }
+    
+    if ((t.m_cols_types[index] == ("Integer")) || (t.m_cols_types[index] == ("Float")))
+    {
+        //cout << "La moyenne de la colonne : " << query_col_name << " est egale a : " << t.m_cols[index]->sum() << endl;
+        return t.m_cols[index]->sum() / t.m_cols[index]->get_size();
+    }
+    else
+    {
+        cout << "On ne peux faire la moyenne avec le type de cette colonne" << endl;
+    }
+    return 0;
+}
 
 Table selection(vector<string> query, Table t)
 {

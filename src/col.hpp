@@ -46,7 +46,7 @@ public:
     {
       res += values[i];
     }
-    return (res);
+    return res;
   }
 };
 
@@ -81,7 +81,7 @@ public:
     {
       res += values[i];
     }
-    return (res);
+    return res;
   }
 };
 
