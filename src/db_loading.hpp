@@ -1,3 +1,7 @@
+#include <fstream>
+#include "table.hpp"
+using namespace std;
+
 int loading(string file_name, Table table)
 {
    string line;

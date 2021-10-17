@@ -24,15 +24,12 @@ int main() {
   };
 
   loading("..\\data\\nation.tbl",part);
-  part.add_row(values);
-  part.add_row(values);
-  part.add_row(values);
-
-  for (int i = 0; i < part.m_cols_names.size(); i++)
-    cout << part.m_cols_names[i] << endl;
-
-  for (int i = 0; i < part.m_cols.size(); i++)
-    part.m_cols[i]->print_values();
+  vector<string> quer = {"P_PARTKEY","P_RETAILPRICE","P_COMMENT"};
+  Table *subpart = part.selection(quer);
+  subpart->sum("P_PARTKEY");
+  vector<string> *tmp=new vector<string>;
+  *tmp=quer;
+  cout<<(*tmp)[0]<<endl;
   
   return 0;
 }

@@ -1,9 +1,15 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string.h>
+using namespace std;
 class ColBase
 {
 public:
   virtual void print_values(){};
   virtual void get_value(){};
   virtual void add_value(string val){};
+  virtual double sum(){};
 };
 
 class ColInt : public ColBase
@@ -20,10 +26,22 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+  double sum()
+  {
+    cout<<"je code comme un pied "<<endl;
+    cout << "La taille de la colonne est " << values.size() << endl;
+    int res=0;
+    for(int i=0;i< (int) values.size();i++)
+    {
+      cout<<values[i]<<endl;
+      res +=values[i];
+    }
+    return(res);
   }
 };
 
@@ -41,10 +59,22 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+  double sum()
+  {
+    cout<<"je code comme un pied "<<endl;
+    cout<<"La taille de la colonne est "<<values.size()<<endl;
+    double res = 0;
+    for (int i = 0; i < (int)values.size(); i++)
+    {
+      cout<<values[i]<<endl;
+      res += values[i];
+    }
+    return (res);
   }
 };
 
@@ -67,7 +97,7 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
