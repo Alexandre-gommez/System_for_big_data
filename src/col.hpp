@@ -3,8 +3,8 @@ class ColBase
 public:
   virtual void print_values(){};
   virtual void add_value(string val){};
-  virtual void get_value(int i){};
-  //virtual void get_values(){};
+  virtual void get_value(int i){};      // création de la méthode get_value qui affiche la ième ligne de chaque table
+  //virtual void get_values(){};        // problèmes avec cette fonction, dû au type de la déclaration ici "void" qui créé des pb plus bas
 };
 
 

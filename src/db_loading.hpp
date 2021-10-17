@@ -1,4 +1,4 @@
-int loading(string file_name, Table *table)
+int loading(string file_name, Table *table) // modification des arguments, la table devient un pointeur
 {
    string line;
    string delimiter = "|";
@@ -23,7 +23,6 @@ int loading(string file_name, Table *table)
       }
       file.close();
    }
-   //(*table).m_cols[1]->print_values();
-   //cout << "fin load - size : " << (*table).m_size << endl;
+
    return 0;
 }
