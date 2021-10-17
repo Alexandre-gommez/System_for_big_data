@@ -8,7 +8,9 @@ class ColBase
 public:
   virtual void print_values(){};
   virtual void add_value(string val){};
-  virtual double sum(){};
+  virtual void get_value(int i){};
+  virtual int get_size() { return 0; };
+  virtual double sum() { return 0; };
 };
 
 // il faudrait aussi créer un type de colonne "date"
@@ -27,6 +29,8 @@ public:
 
   void add_value(string val) { values.push_back(stoi(val)); }
 
+  int get_size() { return values.size(); }
+
   void print_values()
   {
     for (int i = 0; i < (int)values.size(); i++)
@@ -34,17 +38,15 @@ public:
       cout << values[i] << endl;
     }
   }
+
   double sum()
   {
-    cout<<"je code comme un pied "<<endl;
-    cout << "La taille de la colonne est " << values.size() << endl;
-    int res=0;
-    for(int i=0;i< (int) values.size();i++)
+    int res = 0;
+    for (int i = 0; i < (int)values.size(); i++)
     {
-      cout<<values[i]<<endl;
-      res +=values[i];
+      res += values[i];
     }
-    return(res);
+    return (res);
   }
 };
 
@@ -62,6 +64,8 @@ public:
 
   void add_value(string val) { values.push_back(stof(val)); }
 
+  int get_size() { return values.size(); }
+
   void print_values()
   {
     for (int i = 0; i < (int)values.size(); i++)
@@ -69,14 +73,12 @@ public:
       cout << values[i] << endl;
     }
   }
+
   double sum()
   {
-    cout<<"je code comme un pied "<<endl;
-    cout<<"La taille de la colonne est "<<values.size()<<endl;
     double res = 0;
     for (int i = 0; i < (int)values.size(); i++)
     {
-      cout<<values[i]<<endl;
       res += values[i];
     }
     return (res);
@@ -96,11 +98,14 @@ public:
 
   void get_value(int i) { cout << values[i]; }
 
-  void add_value(string val) { 
-    char* temp =(char*)malloc(sizeof(char) * m_length);
-    strcpy(temp,val.c_str());
-    values.push_back(temp); 
-    }
+  int get_size() { return values.size(); }
+
+  void add_value(string val)
+  {
+    char *temp = (char *)malloc(sizeof(char) * m_length);
+    strcpy(temp, val.c_str());
+    values.push_back(temp);
+  }
 
   void print_values()
   {

@@ -1,5 +1,6 @@
 #include <fstream>
-#include "table.hpp"
+#include "function.hpp"
+
 using namespace std;
 
 int loading(string file_name, Table *table) // modification des arguments, la table devient un pointeur
@@ -15,7 +16,7 @@ int loading(string file_name, Table *table) // modification des arguments, la ta
       while (!file.eof())
       {
          pos = line.find(delimiter);
-         while (pos>0)
+         while (pos > 0)
          {
             temp.push_back(line.substr(0, pos));
             line.erase(0, pos + delimiter.length());
