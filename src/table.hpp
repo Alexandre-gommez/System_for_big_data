@@ -4,6 +4,7 @@ public:
   vector<string> m_cols_names;
   vector<string> m_cols_types;
   vector<ColBase *> m_cols;
+  int m_size;         // ajout de la taille de la table dans les attributs
 
   Table() {}
 
@@ -11,6 +12,7 @@ public:
   {
     m_cols_names = cols_names;
     m_cols_types = cols_types;
+    m_size = 0;
     int n_cols = m_cols_types.size();
     for (int i = 0; i < n_cols; i++)
     {
@@ -29,5 +31,26 @@ public:
     {
       m_cols[i]->add_value(data[i]);
     }
-  } 
+    m_size ++;      // mise à jour de la taille à chaque ajout de ligne
+  }
+
+  void print()      // création de la méthode print pour l'affichage de la table
+  {
+    for (int i = 0; i < m_cols_names.size(); i++)
+    {
+      cout << m_cols_names[i] << " - ";
+    }
+    cout << endl;
+    
+    int nb_col = m_cols.size();
+    for (int l = 0; l < m_size; l++)
+    {
+      for (int i = 0; i < nb_col; i++)
+      {
+        m_cols[i]->get_value(l);
+        cout << " - ";
+      }
+      cout << endl;
+    }
+  }
 };

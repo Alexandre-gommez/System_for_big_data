@@ -2,9 +2,12 @@ class ColBase
 {
 public:
   virtual void print_values(){};
-  virtual void get_value(){};
   virtual void add_value(string val){};
+  virtual void get_value(int i){};      // création de la méthode get_value qui affiche la ième ligne de chaque table
+  //virtual void get_values(){};        // problèmes avec cette fonction, dû au type de la déclaration ici "void" qui créé des pb plus bas
 };
+
+// il faudrait aussi créer un type de colonne "date"
 
 class ColInt : public ColBase
 {
@@ -15,6 +18,8 @@ public:
   ColInt() {}
 
   vector<int> get_values() { return values; }
+
+  void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { values.push_back(stoi(val)); }
 
@@ -37,6 +42,8 @@ public:
 
   vector<float> get_values() { return values; }
 
+  void get_value(int i) { cout << values[i]; }
+
   void add_value(string val) { values.push_back(stof(val)); }
 
   void print_values()
@@ -58,6 +65,8 @@ public:
   ColChar(int length) { m_length = length; }
 
   vector<char *> get_values() { return values; }
+
+  void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { 
     char* temp =(char*)malloc(sizeof(char) * m_length);
