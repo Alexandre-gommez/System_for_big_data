@@ -98,16 +98,6 @@ int main() {
   Table region_t(cols_names, types);
   loading("..\\data\\region.tbl",&region_t);
 
-  //for (int i = 0; i < nation_t.m_cols_names.size(); i++)
-  //  cout << nation_t.m_cols_names[i] << endl;
-
-  //for (int i = 0; i < nation_t.m_cols.size(); i++)
-  //  nation_t.m_cols[i]->print_values();
-  //
-  //cout << "Retour main" << endl;
-  //nation_t.m_cols[1]->print_values();
-  //cout << "Size : " << nation_t.m_size << endl;
-
   nation_t.print();
   cout << endl;
 
