@@ -28,6 +28,7 @@ public:
   void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { values.push_back(stoi(val)); }
+  void add_value(int val) { values.push_back(val); }
 
   int get_size() { return values.size(); }
 
@@ -63,6 +64,7 @@ public:
   void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { values.push_back(stof(val)); }
+  void add_value(float val) { values.push_back(val); }
 
   int get_size() { return values.size(); }
 
@@ -106,6 +108,7 @@ public:
     strcpy(temp, val.c_str());
     values.push_back(temp);
   }
+  void add_value(char* val) { values.push_back(val); }
 
   void print_values()
   {

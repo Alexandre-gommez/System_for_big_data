@@ -9,11 +9,9 @@ Rapport
 Sélection des algorithmes à implémenter
 
 Implémentation des algorithmes:
-projection
 sélection
 join
 group by
-sum/avg
 
 Multi threadings
 

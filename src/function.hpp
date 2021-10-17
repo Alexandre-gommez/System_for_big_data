@@ -44,7 +44,9 @@ int avg(string query_col_name, Table t)
     return 0;
 }
 
-Table selection(vector<string> query, Table t)
+
+
+Table projection(vector<string> query, Table t)
 {
     Table res;
     vector<string> col_typ;

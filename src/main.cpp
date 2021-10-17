@@ -78,7 +78,7 @@ int main()
   cout << avg("R_REGIONKEY", region_t) << endl;
 
   vector<string> quer = {"R_REGIONKEY","R_NAME"};
-  Table result = selection(quer, region_t);
+  Table result = projection(quer, region_t);
   result.print();
 
   cout << sum("R_REGIONKEY", result) << endl;
