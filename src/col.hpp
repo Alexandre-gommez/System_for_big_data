@@ -1,10 +1,14 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string.h>
+using namespace std;
 class ColBase
 {
 public:
   virtual void print_values(){};
   virtual void add_value(string val){};
-  virtual void get_value(int i){};      // création de la méthode get_value qui affiche la ième ligne de chaque table
-  //virtual void get_values(){};        // problèmes avec cette fonction, dû au type de la déclaration ici "void" qui créé des pb plus bas
+  virtual double sum(){};
 };
 
 // il faudrait aussi créer un type de colonne "date"
@@ -25,10 +29,22 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+  double sum()
+  {
+    cout<<"je code comme un pied "<<endl;
+    cout << "La taille de la colonne est " << values.size() << endl;
+    int res=0;
+    for(int i=0;i< (int) values.size();i++)
+    {
+      cout<<values[i]<<endl;
+      res +=values[i];
+    }
+    return(res);
   }
 };
 
@@ -48,10 +64,22 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+  double sum()
+  {
+    cout<<"je code comme un pied "<<endl;
+    cout<<"La taille de la colonne est "<<values.size()<<endl;
+    double res = 0;
+    for (int i = 0; i < (int)values.size(); i++)
+    {
+      cout<<values[i]<<endl;
+      res += values[i];
+    }
+    return (res);
   }
 };
 
@@ -76,7 +104,7 @@ public:
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }

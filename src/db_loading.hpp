@@ -1,3 +1,7 @@
+#include <fstream>
+#include "table.hpp"
+using namespace std;
+
 int loading(string file_name, Table *table) // modification des arguments, la table devient un pointeur
 {
    string line;

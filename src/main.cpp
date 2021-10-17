@@ -102,5 +102,12 @@ int main() {
   cout << endl;
 
   region_t.print();
+  loading("..\\data\\nation.tbl",part);
+  Table *subpart = part.selection(quer);
+  vector<string> quer = {"P_PARTKEY","P_RETAILPRICE","P_COMMENT"};
+  subpart->sum("P_PARTKEY");
+  vector<string> *tmp=new vector<string>;
+  *tmp=quer;
+  cout<<(*tmp)[0]<<endl;
   return 0;
 }
