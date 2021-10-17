@@ -3,10 +3,13 @@
 void sum(string query_col_name, Table t)
 {
     int index = -1;
-    for (int i = 0; i < t.m_cols_names.size(); i++)
-        if (query_col_name == t.m_cols_names[i])
+    for (int i = 0; i < t.m_cols_names.size(); i++) {
+        if (query_col_name == t.m_cols_names[i]) {
             index = i;
-    
+            break;
+        }
+    }
+
     if ((t.m_cols_types[index] == ("Integer")) || (t.m_cols_types[index] == ("Float")))
     {
         cout << "La moyenne de la colonne : " << query_col_name << " est egale a : " << t.m_cols[index]->sum() << endl;
@@ -17,35 +20,23 @@ void sum(string query_col_name, Table t)
     }
 }
 
+
 Table selection(vector<string> query, Table t)
 {
+    Table res;
     vector<string> col_typ;
-    //On récupère les colonnes et leur type pour construire la nouvelle table
-    int limit = query.size();
-    int n_cols = t.m_cols_types.size();
-    for (int i = 0; i < n_cols; i++)
-    {
-        for (int j = 0; j < limit; j++)
-        {
-            if (t.m_cols_names[i] == query[j])
-            {
-                col_typ.push_back(t.m_cols_types[i]);
+    //On récupère les attributs de notre table pour construire la nouvelle
+    for (int i = 0; i < t.m_cols.size(); i++) {
+        for (int j = 0; j < query.size(); j++) {
+            if (t.m_cols_names[i] == query[j]) {
+                res.m_cols_types.push_back(t.m_cols_types[i]);
+                res.m_cols_names.push_back(t.m_cols_names[i]);
+                res.m_cols.push_back(t.m_cols[i]);
             }
         }
     }
-    //Création de la table que l'on va retourner
-    Table res(query, col_typ);
-    res.n_row = t.n_row;
-    //Ajout de la valeur des colonnes de cette nouvelle table;
-    for (int i = 0; i < n_cols; i++)
-    {
-        for (int j = 0; j < n_cols; j++)
-        {
-            if (t.m_cols_names[i] == query[j])
-            {
-                res.m_cols[j] = t.m_cols[i];
-            }
-        }
-    }
+    if (res.m_cols.size() > 0)
+        res.n_row = t.n_row;
+
     return res;
 }

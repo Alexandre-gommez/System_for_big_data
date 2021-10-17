@@ -1,11 +1,13 @@
 #include "col.hpp"
+
 using namespace std;
+
 class Table
 {
 public:
   vector<string> m_cols_names;
   vector<string> m_cols_types;
-  vector<ColBase *> m_cols;
+  vector<ColBase*> m_cols;
   int n_row;
 
   Table() {}
@@ -15,8 +17,8 @@ public:
     n_row = 0;
     m_cols_names = cols_names;
     m_cols_types = cols_types;
-    int n_cols = m_cols_types.size();
-    for (int i = 0; i < n_cols; i++)
+
+    for (int i = 0; i < m_cols_types.size(); i++)
     {
       if (cols_types[i] == "Integer")
         m_cols.push_back(new ColInt());
