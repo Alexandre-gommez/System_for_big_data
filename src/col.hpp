@@ -7,6 +7,7 @@ public:
   //virtual void get_values(){};        // problèmes avec cette fonction, dû au type de la déclaration ici "void" qui créé des pb plus bas
 };
 
+// il faudrait aussi créer un type de colonne "date"
 
 class ColInt : public ColBase
 {

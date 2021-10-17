@@ -38,7 +38,7 @@ public:
   {
     for (int i = 0; i < m_cols_names.size(); i++)
     {
-      cout << m_cols_names[i] << "\n";
+      cout << m_cols_names[i] << " - ";
     }
     cout << endl;
     
@@ -48,7 +48,7 @@ public:
       for (int i = 0; i < nb_col; i++)
       {
         m_cols[i]->get_value(l);
-        cout << "\n";
+        cout << " - ";
       }
       cout << endl;
     }
