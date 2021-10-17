@@ -22,9 +22,9 @@ store sur disk
 HDFS?! (déterminer ce que c'est)
 
 - [50%] Baseline implementation:
-        - 1 thread
-        - Any storage layout, stored in the main memory
-        - All operators
+    - 1 thread
+    - Any storage layout, stored in the main memory
+    - All operators
 Statut ->
 - [15%] Spark support
 Statut -> impossible 
