@@ -44,8 +44,6 @@ int avg(string query_col_name, Table t)
     return 0;
 }
 
-
-
 Table projection(vector<string> query, Table t)
 {
     Table res;
@@ -62,6 +60,5 @@ Table projection(vector<string> query, Table t)
     }
     if (res.m_cols.size() > 0)
         res.n_row = t.n_row;
-
     return res;
 }

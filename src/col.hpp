@@ -13,8 +13,6 @@ public:
   virtual double sum() { return 0; };
 };
 
-// il faudrait aussi créer un type de colonne "date"
-
 class ColInt : public ColBase
 {
 
