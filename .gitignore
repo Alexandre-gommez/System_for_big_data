@@ -6,4 +6,5 @@ src/table_row.exe
 
 .vscode/c_cpp_properties.json
 data
+data_extract
 makefile
