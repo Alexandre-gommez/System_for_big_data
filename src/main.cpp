@@ -75,42 +75,24 @@ int main()
         "Integer", "25", "152"};
     Table region_t(cols_names, types);
     loading("..\\data\\region.tbl", &region_t);
-    loading("..\\data\\region.tbl", &region_t);
+
 
     time(&end);
 
-/*     double difference = difftime(end, begin);
+    double difference = difftime(end, begin);
     printf("time taken for function() %.2lf seconds.\n", difference);
 
-    cout << sum("R_REGIONKEY", region_t) << endl;
-    cout << avg("R_REGIONKEY", region_t) << endl;
+    cout <<"Sum of R_regionkey in table rejoin"<< sum("R_REGIONKEY", region_t) << endl;
+    cout <<"AVG of R_regionkey in table rejoin"<< avg("R_REGIONKEY", region_t) << endl;
 
     vector<string> quer = {"R_REGIONKEY", "R_NAME"};
     Table result = projection(quer, region_t);
     result.print();
 
-    cout << sum("R_REGIONKEY", result) << endl;
-    cout << avg("R_REGIONKEY", result) << endl; */
-/*     vector<string> cols_names = {
-        "P_PARTKEY", "P_NAME", "P_MFGR", "P_BRAND", "P_TYPE",
-        "P_SIZE", "P_CONTAINER", "P_RETAILPRICE", "P_COMMENT"};
-    vector<string> types = {
-        "Integer", "55", "25", "10", "25", "Integer", "10", "Float", "23"};
-    Table part(cols_names, types);
-
-    vector<string> values = {
-        "5", "test1", "test2", "test3", "test4", "10", "test5", "5.5", "test6"};
-    vector<string> values2 = {
-        "15", "test1", "test2", "test3", "test4", "10", "test5", "20.5", "test6"};
-
-    part.add_row(values);
-    part.add_row(values2);
-    part.add_row(values);
-    part.add_row(values); */
-    region_t.print();
+/*     region_t.print();
     cout<<"On applique le distinct"<<endl;
     distinct(region_t);
     cout<<"Apres le distinct"<<endl;
-    region_t.print();
+    region_t.print(); */
     return 0;
 }
