@@ -51,12 +51,25 @@ public:
   }
   void distinct()
   {
-    unordered_set<int>tmp;
-    for(int i=0;i<values.size();i++)
+    cout<<"On arrive a l'etape 1"<<endl;
+    vector<int> tmp;
+    tmp.push_back(values[0]);
+    for(int i=1;i<(int)values.size();i++)
     {
-      tmp.insert(values[i]);
+      int tampon = 0;
+      for(int j=0;j<(int)tmp.size();j++)
+      {
+        if(tmp[j]==values[i])
+        {
+          tampon++;
+        }
+      }
+      if(tampon==0)
+      {
+        tmp.push_back(values[i]);
+      }
     }
-    values.assign(tmp.begin(),tmp.end());
+    values=tmp;
   }
 };
 
@@ -96,12 +109,24 @@ public:
   }
   void distinct()
   {
-    unordered_set<float> tmp;
-    for (int i = 0; i < values.size(); i++)
+    vector<float> tmp;
+    tmp.push_back(values[0]);
+    for (int i = 1; i < (int)values.size(); i++)
     {
-      tmp.insert(values[i]);
+      int tampon = 0;
+      for (int j = 0; j < (int)tmp.size(); j++)
+      {
+        if (tmp[j] == values[i])
+        {
+          tampon++;
+        }
+      }
+      if (tampon == 0)
+      {
+        tmp.push_back(values[i]);
+      }
     }
-    values.assign(tmp.begin(), tmp.end());
+    values = tmp;
   }
 };
 
@@ -142,14 +167,19 @@ public:
     int nb_row = values.size();
     for(int i=1;i<nb_row;i++)
     {
+      int tampon=0;
       for(int j=0;j<(int)tmp.size();j++)
       {
-        if (!(string(values[i]) == string(tmp[j])))
+        if ((string(values[i]) == string(tmp[j])))
         {
-          tmp.push_back(values[i]);
+          tampon++;
         }
       }
+      if(tampon==0)
+      {
+        tmp.push_back(values[i]);
+      }
     }
-    values.assign(tmp.begin(),tmp.end());
-  }
+    values=tmp;
+  };
 };
