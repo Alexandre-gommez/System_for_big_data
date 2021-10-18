@@ -38,7 +38,20 @@ public:
     n_row++;
   }
 
-  void print() // création de la méthode print pour l'affichage de la table
+  vector<string> get_row(int l)
+  {
+    vector<string> temp;
+    string token;
+    for (int i = 0; i < m_cols_names.size(); i++)
+    {
+      token = m_cols[i]->get_value(l);
+      temp.push_back(token);
+    }
+    return temp;
+  }
+
+  // Méthode print pour l'affichage de la table
+  void print() 
   {
     for (int i = 0; i < m_cols_names.size(); i++)
     {
@@ -47,14 +60,29 @@ public:
     cout << endl;
 
     int nb_col = m_cols.size();
-    for (int l = 0; l < m_cols[0]->get_size(); l++)
+    for (int l = 0; l < n_row; l++)
     {
-      for (int i = 0; i < nb_col; i++)
+      for (const string& word : get_row(l))
       {
-        m_cols[i]->get_value(l);
-        cout << " - ";
+        cout << word << " - ";
       }
       cout << endl;
     }
+  }
+
+  // Méthode save pour sauvegarder en fichier .tbl
+  void save(string filename)
+  {
+    ofstream file;
+    file.open(filename, ios::out);
+    for (int l = 0; l < n_row; l++)
+    {
+      for (const string& word : get_row(l))
+      {
+        file << word << "|";
+      }
+      file << endl;
+    }
+    file.close();
   }
 };

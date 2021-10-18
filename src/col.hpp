@@ -8,7 +8,7 @@ class ColBase
 public:
   virtual void print_values(){};
   virtual void add_value(string val){};
-  virtual void get_value(int i){};
+  virtual string get_value(int i){};
   virtual int get_size() { return 0; };
   virtual double sum() { return 0; };
 };
@@ -25,7 +25,7 @@ public:
 
   vector<int> get_values() { return values; }
 
-  void get_value(int i) { cout << values[i]; }
+  string get_value(int i) { return to_string(values[i]); }
 
   void add_value(string val) { values.push_back(stoi(val)); }
   void add_value(int val) { values.push_back(val); }
@@ -61,7 +61,7 @@ public:
 
   vector<float> get_values() { return values; }
 
-  void get_value(int i) { cout << values[i]; }
+  string get_value(int i) { return to_string(values[i]); }
 
   void add_value(string val) { values.push_back(stof(val)); }
   void add_value(float val) { values.push_back(val); }
@@ -98,7 +98,7 @@ public:
 
   vector<char *> get_values() { return values; }
 
-  void get_value(int i) { cout << values[i]; }
+  string get_value(int i) { return values[i]; }
 
   int get_size() { return values.size(); }
 

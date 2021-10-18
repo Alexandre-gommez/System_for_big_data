@@ -74,15 +74,21 @@ int main()
   Table region_t(cols_names, types);
   loading("..\\data\\region.tbl", &region_t);
 
-  cout << sum("R_REGIONKEY", region_t) << endl;
-  cout << avg("R_REGIONKEY", region_t) << endl;
+  //region_t.print();
 
-  vector<string> quer = {"R_REGIONKEY","R_NAME"};
-  Table result = projection(quer, region_t);
-  result.print();
+  region_t.print();
 
-  cout << sum("R_REGIONKEY", result) << endl;
-  cout << avg("R_REGIONKEY", result) << endl;
+
+
+  // cout << sum("R_REGIONKEY", region_t) << endl;
+  // cout << avg("R_REGIONKEY", region_t) << endl;
+
+    vector<string> quer = {"R_REGIONKEY","R_NAME"};
+    Table result = projection(quer, region_t);
+    result.print();
+    region_t.save("..\\data_extract\\region_save.tbl");
+  // cout << sum("R_REGIONKEY", result) << endl;
+  // cout << avg("R_REGIONKEY", result) << endl;
   /*vector<string> *tmp = new vector<string>;
   *tmp = quer;
   cout << (*tmp)[0] << endl; */
