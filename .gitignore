@@ -5,3 +5,5 @@ src/table_row.exe
 .vscode/settings.json
 
 .vscode/c_cpp_properties.json
+
+makefile

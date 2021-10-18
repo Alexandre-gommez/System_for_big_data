@@ -1,10 +1,16 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string.h>
+using namespace std;
 class ColBase
 {
 public:
   virtual void print_values(){};
   virtual void add_value(string val){};
-  virtual void get_value(int i){};      // création de la méthode get_value qui affiche la ième ligne de chaque table
-  //virtual void get_values(){};        // problèmes avec cette fonction, dû au type de la déclaration ici "void" qui créé des pb plus bas
+  virtual void get_value(int i){};
+  virtual int get_size() { return 0; };
+  virtual double sum() { return 0; };
 };
 
 // il faudrait aussi créer un type de colonne "date"
@@ -22,13 +28,26 @@ public:
   void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { values.push_back(stoi(val)); }
+  void add_value(int val) { values.push_back(val); }
+
+  int get_size() { return values.size(); }
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+
+  double sum()
+  {
+    int res = 0;
+    for (int i = 0; i < (int)values.size(); i++)
+    {
+      res += values[i];
+    }
+    return res;
   }
 };
 
@@ -45,13 +64,26 @@ public:
   void get_value(int i) { cout << values[i]; }
 
   void add_value(string val) { values.push_back(stof(val)); }
+  void add_value(float val) { values.push_back(val); }
+
+  int get_size() { return values.size(); }
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
+  }
+
+  double sum()
+  {
+    double res = 0;
+    for (int i = 0; i < (int)values.size(); i++)
+    {
+      res += values[i];
+    }
+    return res;
   }
 };
 
@@ -68,15 +100,19 @@ public:
 
   void get_value(int i) { cout << values[i]; }
 
-  void add_value(string val) { 
-    char* temp =(char*)malloc(sizeof(char) * m_length);
-    strcpy(temp,val.c_str());
-    values.push_back(temp); 
-    }
+  int get_size() { return values.size(); }
+
+  void add_value(string val)
+  {
+    char *temp = (char *)malloc(sizeof(char) * m_length);
+    strcpy(temp, val.c_str());
+    values.push_back(temp);
+  }
+  void add_value(char* val) { values.push_back(val); }
 
   void print_values()
   {
-    for (int i = 0; i < values.size(); i++)
+    for (int i = 0; i < (int)values.size(); i++)
     {
       cout << values[i] << endl;
     }
