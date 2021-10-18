@@ -62,3 +62,12 @@ Table projection(vector<string> query, Table t)
         res.n_row = t.n_row;
     return res;
 }
+
+void distinct(Table &t)
+{
+    int nb_col=t.m_cols_types.size();
+    for(int i=0;i<nb_col;i++)
+    {
+        t.m_cols[i]->distinct();
+    }
+}
