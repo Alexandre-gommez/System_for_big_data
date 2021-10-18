@@ -9,6 +9,14 @@ public:
   virtual void print_values(){};
   virtual void add_value(string val){};
   virtual string get_value(int i){};
+  virtual void insert(ColBase *col)
+  {
+    int nb_row = (*col).get_size();
+    for (int l=0; l< nb_row; l++)
+    {
+      add_value((*col).get_value(l));
+    }
+  };
   virtual int get_size() { return 0; };
   virtual double sum() { return 0; };
 };
@@ -23,7 +31,7 @@ public:
 
   ColInt() {}
 
-  vector<int> get_values() { return values; }
+  //vector<int> get_values() { return values; }
 
   string get_value(int i) { return to_string(values[i]); }
 
@@ -59,7 +67,7 @@ public:
 
   ColFloat() {}
 
-  vector<float> get_values() { return values; }
+  //vector<float> get_values() { return values; }
 
   string get_value(int i) { return to_string(values[i]); }
 

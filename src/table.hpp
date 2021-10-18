@@ -59,7 +59,7 @@ public:
     }
     cout << endl;
 
-    int nb_col = m_cols.size();
+    //int nb_col = m_cols.size();
     for (int l = 0; l < n_row; l++)
     {
       for (const string& word : get_row(l))
@@ -85,4 +85,18 @@ public:
     }
     file.close();
   }
+
+  // Méthode concat pour concaténer 2 tables de même type
+  void concat(Table tab2)
+  {
+    if (m_cols_names == tab2.m_cols_names)
+    {
+      for (int i =0; i< m_cols.size();i++)
+      {
+        m_cols[i] -> insert(tab2.m_cols[i]);
+      }
+      n_row = n_row + tab2.n_row;
+    }
+  }
+
 };

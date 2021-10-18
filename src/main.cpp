@@ -10,7 +10,7 @@ int main()
     vector<string> types = {
       "Integer", "55", "25", "10", "25", "Integer", "10", "Float", "23"};
     Table part_t(cols_names, types);
-    loading("..\\data\\part.tbl", &part_t);
+    //loading("..\\data\\part.tbl", &part_t);
 
     //2 - table Supplier *******************************************************
     cols_names = {
@@ -18,7 +18,7 @@ int main()
     types = {
       "Integer", "25", "40", "Integer", "15", "Float", "101"};
     Table supplier_t(cols_names, types);
-    loading("..\\data\\supplier.tbl", &supplier_t);
+    //loading("..\\data\\supplier.tbl", &supplier_t);
 
     //3 - table partsupp******************************************************************
     cols_names = {
@@ -26,7 +26,7 @@ int main()
     types = {
       "Integer", "Integer", "Integer", "Float", "199"};
     Table partsupp_t(cols_names, types);
-    loading("..\\data\\partsupp.tbl", &partsupp_t);
+    //loading("..\\data\\partsupp.tbl", &partsupp_t);
 
     //4 - table customer******************************************************************
     cols_names = {
@@ -35,7 +35,7 @@ int main()
     types = {
       "Integer", "25", "40", "Integer", "15", "Float", "10", "117"};
     Table customer_t(cols_names, types);
-    loading("..\\data\\customer.tbl", &customer_t);
+    //loading("..\\data\\customer.tbl", &customer_t);
 
     //5 - table orders******************************************************************
     cols_names = {
@@ -44,7 +44,7 @@ int main()
     types = {
       "Integer", "Integer", "1", "Float", "10", "15", "15", "Integer", "79"};
     Table orders_t(cols_names, types);
-    loading("..\\data\\orders.tbl", &orders_t);
+    //loading("..\\data\\orders.tbl", &orders_t);
 
   //6 - table lineitem******************************************************************
     cols_names = {
@@ -56,15 +56,15 @@ int main()
       "Integer", "Integer", "Integer", "Integer", "Float", "Float", "Float", "Float",
       "1", "1", "10", "10", "10", "25", "10", "44"};
     Table lineitem_t(cols_names, types);
-    loading("..\\data\\lineitem.tbl", &lineitem_t);
+    //loading("..\\data\\lineitem.tbl", &lineitem_t);
 
     //7 - table Nation *********************************************************
     cols_names = {
       "N_NATIONKEY", "N_NAME", "N_REGIONKEY", "N_COMMENT"};
     types = {
       "Integer", "25", "Integer", "152"};
-    Table nation_t(cols_names, types);-
-    loading("..\\data\\nation.tbl", &nation_t);
+    Table nation_t(cols_names, types);
+    //loading("..\\data\\nation.tbl", &nation_t);
 
     //8 - table region ***********************************************************
     cols_names = {
@@ -76,6 +76,25 @@ int main()
 
     //customer_t.print();
 
+    //ColChar a(3);
+    //string temp = "ab";
+    //a.add_value(temp);
+    //temp = "cd";
+    //a.add_value(temp);
+    //temp = "ef";
+    //a.add_value(temp);
+    //ColChar b(3);
+    //temp = "gh";
+    //b.add_value(temp);
+    //temp = "ij";
+    //b.add_value(temp);
+
+    //a.insert(&b);
+    //a.print_values();
+
+    region_t.concat(region_t);
+    region_t.print();
+    //region_t.save("..\\data_extract\\region_save.tbl");
 
 
   // cout << sum("R_REGIONKEY", region_t) << endl;
@@ -84,7 +103,7 @@ int main()
     //vector<string> quer = {"R_REGIONKEY","R_NAME"};
     //Table result = projection(quer, region_t);
     //result.print();
-    customer_t.save("..\\data_extract\\customer_save.tbl");
+    //customer_t.save("..\\data_extract\\customer_save.tbl");
   // cout << sum("R_REGIONKEY", result) << endl;
   // cout << avg("R_REGIONKEY", result) << endl;
   /*vector<string> *tmp = new vector<string>;
