@@ -11,7 +11,14 @@ public:
   int n_row;
 
   Table() {}
-
+  ~Table()
+  {
+    while (!m_cols.empty())
+    {
+      delete m_cols.back();
+      m_cols.pop_back();
+    }
+  }
   Table(vector<string> cols_names, vector<string> cols_types)
   {
     n_row = 0;
@@ -82,14 +89,13 @@ public:
 
       if (res == 0)
       {
-        for(int j=0;j<m_cols.size();j++)
+        for (int j = 0; j < m_cols.size(); j++)
         {
           m_cols[j]->get_value(i);
           cout << " - ";
         }
-        cout<<endl;
+        cout << endl;
       }
     }
   }
-}
-;
+};

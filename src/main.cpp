@@ -1,19 +1,42 @@
 #include "db_loading.hpp"
 int main()
 {
-    
+
     time_t begin, end; // time_t is a datatype to store time values.
     time(&begin);
 
-     //1 - table part ************************************************************
+    //1 - table part ************************************************************
     vector<string> cols_names = {
         "P_PARTKEY", "P_NAME", "P_MFGR", "P_BRAND",
         "P_TYPE", "P_SIZE", "P_CONTAINER", "P_RETAILPRICE", "P_COMMENT"};
     vector<string> types = {
         "Integer", "55", "25", "10", "25", "Integer", "10", "Float", "23"};
-    Table part_t(cols_names, types);
-    //loading("..\\data\\part.tbl", &part_t);
-/*
+    Table *part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    cout<<"1";
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    cout<<"2";
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    cout<<"3";
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+    part_t = new Table(cols_names, types);
+    loading("..\\data\\part.tbl", part_t);
+    delete (part_t);
+
+    /*
     //2 - table Supplier *******************************************************
     cols_names = {
         "S_SUPPKEY", "S_NAME", "S_ADDRESS", "S_NATIONKEY", "S_PHONE", "S_ACCTBAL", "S_COMMENT"};
@@ -39,7 +62,7 @@ int main()
     Table customer_t(cols_names, types);
     loading("..\\data\\customer.tbl", &customer_t); */
 
-/*     //5 - table orders******************************************************************
+    /*     //5 - table orders******************************************************************
     cols_names = {
         "O_ORDERKEY", "O_CUSTKEY", "O_ORDERSTATUS", "O_TOTALPRICE",
         "O_ORDERDATE", "O_ORDERPRIORITY", "O_CLERK", "O_SHIPPPRIORITY", "O_COMMENT"};
@@ -48,7 +71,7 @@ int main()
     Table orders_t(cols_names, types);
     loading("..\\data\\orders.tbl", &orders_t); */
 
-/*     //6 - table lineitem******************************************************************
+    /*     //6 - table lineitem******************************************************************
     cols_names = {
         "L_ORDERKEY", "L_PARTKEY", "L_SUPPKEY", "L_LINENUMBER",
         "L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_TAX", "L_RETURNFLAG",
@@ -60,7 +83,7 @@ int main()
     Table lineitem_t(cols_names, types);
     loading("..\\data\\lineitem.tbl", &lineitem_t); */
 
-/*     //7 - table Nation *********************************************************
+    /*     //7 - table Nation *********************************************************
     cols_names = {
         "N_NATIONKEY", "N_NAME", "N_REGIONKEY", "N_COMMENT"};
     types = {
@@ -73,27 +96,28 @@ int main()
         "R_REGIONKEY", "R_NAME", "R_COMMENT"};
     types = {
         "Integer", "25", "152"};
-    Table region_t(cols_names, types);
-    loading("..\\data\\region.tbl", &region_t);
+    Table *region_t = new Table(cols_names, types);
+    loading("..\\data\\region.tbl", region_t);
 
     time(&end);
 
     double difference = difftime(end, begin);
     printf("time taken for function() %.2lf seconds.\n", difference);
 
-    cout <<"Sum of R_regionkey in table rejoin "<< sum("R_REGIONKEY", region_t) << endl;
-    cout <<"AVG of R_regionkey in table rejoin "<< avg("R_REGIONKEY", region_t) << endl;
+    cout << "Sum of R_regionkey in table rejoin " << sum("R_REGIONKEY", *region_t) << endl;
+    cout << "AVG of R_regionkey in table rejoin " << avg("R_REGIONKEY", *region_t) << endl;
 
-/*     vector<string> quer = {"R_REGIONKEY", "R_NAME"};
+    /*     vector<string> quer = {"R_REGIONKEY", "R_NAME"};
     Table result = projection(quer, region_t);
     result.print(); */
 
-    vector<string> col={"R_REGIONKEY","R_NAME"};
-    vector<string> op={"=","="};
-    vector<string> val={"2","ASIA"};
-    region_t.where(col,op,val);
+    vector<string> col = {"R_REGIONKEY", "R_NAME"};
+    vector<string> op = {"=", "="};
+    vector<string> val = {"2", "ASIA"};
+    region_t->where(col, op, val);
+    delete (region_t);
 
-/*     region_t.print();
+    /*     region_t.print();
     cout<<"On applique le distinct"<<endl;
     distinct(region_t);
     cout<<"Apres le distinct"<<endl;

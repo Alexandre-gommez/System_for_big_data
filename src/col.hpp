@@ -7,6 +7,7 @@ using namespace std;
 class ColBase
 {
 public:
+  virtual ~ColBase(){};
   virtual void print_values(){};
   virtual void add_value(string val){};
   virtual void get_value(int i){};
@@ -23,7 +24,7 @@ public:
   vector<int> values;
 
   ColInt() {}
-
+  ~ColInt() {}
   vector<int> get_values() { return values; }
 
   void get_value(int i) { cout << values[i]; }
@@ -118,7 +119,7 @@ public:
   vector<float> values;
 
   ColFloat() {}
-
+  ~ColFloat() {}
   vector<float> get_values() { return values; }
 
   void get_value(int i) { cout << values[i]; }
@@ -214,6 +215,12 @@ public:
 
   ColChar(int length) { m_length = length; }
 
+  ~ColChar() {
+    int size=values.size();
+    for (int i=0;i<size;i++)
+      delete values[i];
+  }
+
   vector<char *> get_values() { return values; }
 
   void get_value(int i) { cout << values[i]; }
@@ -222,7 +229,7 @@ public:
 
   void add_value(string val)
   {
-    char *temp = (char *)malloc(sizeof(char) * m_length);
+    char *temp = new char[m_length];
     strcpy(temp, val.c_str());
     values.push_back(temp);
   }
