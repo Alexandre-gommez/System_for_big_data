@@ -1,4 +1,5 @@
 #include "db_loading.hpp"
+#include "table_row.hpp"
 
 int main()
 {
@@ -65,6 +66,14 @@ int main()
       "Integer", "25", "Integer", "152"};
     Table nation_t(cols_names, types);
     //loading("..\\data\\nation.tbl", &nation_t);
+    Table_row_n nation_r(cols_names, types, "..\\data\\nation.tbl");
+    cout << "Row table " << endl;
+    nation_r.print();
+    cout << endl;
+    nation_r.concat(nation_r);
+    cout << "Row table concat" << endl;
+    nation_r.print();
+    cout << endl;
 
     //8 - table region ***********************************************************
     cols_names = {
@@ -73,6 +82,8 @@ int main()
       "Integer", "25", "152"};
     Table region_t(cols_names, types);
     loading("..\\data\\region.tbl", &region_t);
+
+    
 
     //customer_t.print();
 
@@ -93,6 +104,7 @@ int main()
     //a.print_values();
 
     region_t.concat(region_t);
+    cout << "Concat col " << endl;
     region_t.print();
     //region_t.save("..\\data_extract\\region_save.tbl");
 

@@ -59,7 +59,6 @@ public:
     }
     cout << endl;
 
-    //int nb_col = m_cols.size();
     for (int l = 0; l < n_row; l++)
     {
       for (const string& word : get_row(l))

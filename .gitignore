@@ -1,7 +1,7 @@
 .vscode/launch.json
 .vscode/tasks.json
 src/table_row.exe
-
+src/main.exe
 .vscode/settings.json
 
 .vscode/c_cpp_properties.json
