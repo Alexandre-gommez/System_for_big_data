@@ -7,7 +7,7 @@ class Table
 public:
   vector<string> m_cols_names;
   vector<string> m_cols_types;
-  vector<ColBase*> m_cols;
+  vector<ColBase *> m_cols;
   int n_row;
 
   Table() {}
@@ -57,4 +57,39 @@ public:
       cout << endl;
     }
   }
-};
+
+  void where(vector<string> col, vector<string> op, vector<string> val)
+  {
+    vector<int> index;
+    for (int i = 0; i < m_cols.size(); i++)
+    {
+      for (int j = 0; j < col.size(); j++)
+      {
+        if (col[j] == m_cols_names[i])
+        {
+          index.push_back(i);
+          j = col.size();
+        }
+      }
+    }
+    for (int i = 0; i < n_row; i++)
+    {
+      int res = 0;
+      for (int j = 0; j < index.size(); j++)
+      {
+        res += m_cols[index[j]]->where(i, op[j], val[j]);
+      }
+
+      if (res == 0)
+      {
+        for(int j=0;j<m_cols.size();j++)
+        {
+          m_cols[j]->get_value(i);
+          cout << " - ";
+        }
+        cout<<endl;
+      }
+    }
+  }
+}
+;

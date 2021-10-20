@@ -13,6 +13,7 @@ public:
   virtual int get_size() { return 0; };
   virtual double sum() { return 0; };
   virtual void distinct(){};
+  virtual int where(int i, string op, string val) { return 0; };
 };
 
 class ColInt : public ColBase
@@ -49,14 +50,64 @@ public:
     }
     return res;
   }
+
   void distinct()
   {
-    unordered_set<int>tmp;
-    for(int i=0;i<values.size();i++)
+    unordered_set<int> tmp;
+    for (int i = 0; i < values.size(); i++)
     {
       tmp.insert(values[i]);
     }
-    values.assign(tmp.begin(),tmp.end());
+    values.assign(tmp.begin(), tmp.end());
+  }
+
+  int where(int i, string op, string val)
+  {
+    if (op == "=")
+    {
+      if (values[i] == stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "<")
+    {
+      if (values[i] < stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == ">")
+    {
+      if (values[i] > stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "<=")
+    {
+      if (values[i] <= stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == ">=")
+    {
+      if (values[i] >= stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "!=")
+    {
+      if (values[i] != stoi(val))
+        return 0;
+      else
+        return 1;
+    }
+    else
+      cout << "Operation not supported";
+    return 1;
   }
 };
 
@@ -103,6 +154,55 @@ public:
     }
     values.assign(tmp.begin(), tmp.end());
   }
+
+  int where(int i, string op, string val)
+  {
+    if (op == "=")
+    {
+      if (values[i] == stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "<")
+    {
+      if (values[i] < stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == ">")
+    {
+      if (values[i] > stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "<=")
+    {
+      if (values[i] <= stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == ">=")
+    {
+      if (values[i] >= stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "!=")
+    {
+      if (values[i] != stof(val))
+        return 0;
+      else
+        return 1;
+    }
+    else
+      cout << "Operation not supported";
+    return 1;
+  }
 };
 
 class ColChar : public ColBase
@@ -126,7 +226,7 @@ public:
     strcpy(temp, val.c_str());
     values.push_back(temp);
   }
-  void add_value(char* val) { values.push_back(val); }
+  void add_value(char *val) { values.push_back(val); }
 
   void print_values()
   {
@@ -137,12 +237,12 @@ public:
   }
   void distinct()
   {
-    vector<char*>tmp;
+    vector<char *> tmp;
     tmp.push_back(values[0]);
     int nb_row = values.size();
-    for(int i=1;i<nb_row;i++)
+    for (int i = 1; i < nb_row; i++)
     {
-      for(int j=0;j<(int)tmp.size();j++)
+      for (int j = 0; j < (int)tmp.size(); j++)
       {
         if (!(string(values[i]) == string(tmp[j])))
         {
@@ -150,6 +250,27 @@ public:
         }
       }
     }
-    values.assign(tmp.begin(),tmp.end());
+    values.assign(tmp.begin(), tmp.end());
+  }
+
+  int where(int i, string op, string val)
+  {
+    if (op == "=")
+    {
+      if (strcmp(values[i], val.c_str()) == 0)
+        return 0;
+      else
+        return 1;
+    }
+    else if (op == "!=")
+    {
+      if (strcmp(values[i], val.c_str()) != 0)
+        return 0;
+      else
+        return 1;
+    }
+    else
+      cout << "Operation not supported";
+    return 1;
   }
 };

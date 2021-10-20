@@ -11,9 +11,9 @@ int main()
         "P_TYPE", "P_SIZE", "P_CONTAINER", "P_RETAILPRICE", "P_COMMENT"};
     vector<string> types = {
         "Integer", "55", "25", "10", "25", "Integer", "10", "Float", "23"};
-    /*Table part_t(cols_names, types);
-    loading("..\\data\\part.tbl", &part_t);
-
+    Table part_t(cols_names, types);
+    //loading("..\\data\\part.tbl", &part_t);
+/*
     //2 - table Supplier *******************************************************
     cols_names = {
         "S_SUPPKEY", "S_NAME", "S_ADDRESS", "S_NATIONKEY", "S_PHONE", "S_ACCTBAL", "S_COMMENT"};
@@ -76,18 +76,22 @@ int main()
     Table region_t(cols_names, types);
     loading("..\\data\\region.tbl", &region_t);
 
-
     time(&end);
 
     double difference = difftime(end, begin);
     printf("time taken for function() %.2lf seconds.\n", difference);
 
-    cout <<"Sum of R_regionkey in table rejoin"<< sum("R_REGIONKEY", region_t) << endl;
-    cout <<"AVG of R_regionkey in table rejoin"<< avg("R_REGIONKEY", region_t) << endl;
+    cout <<"Sum of R_regionkey in table rejoin "<< sum("R_REGIONKEY", region_t) << endl;
+    cout <<"AVG of R_regionkey in table rejoin "<< avg("R_REGIONKEY", region_t) << endl;
 
-    vector<string> quer = {"R_REGIONKEY", "R_NAME"};
+/*     vector<string> quer = {"R_REGIONKEY", "R_NAME"};
     Table result = projection(quer, region_t);
-    result.print();
+    result.print(); */
+
+    vector<string> col={"R_REGIONKEY","R_NAME"};
+    vector<string> op={"=","="};
+    vector<string> val={"2","ASIA"};
+    region_t.where(col,op,val);
 
 /*     region_t.print();
     cout<<"On applique le distinct"<<endl;
