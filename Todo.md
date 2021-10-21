@@ -1,11 +1,8 @@
-- Where
-- Distinct 
-- Count
 - Join 
 - Group By
 - Le rapport
 - Row store ( coder des fonction lier a row store? j'ai demandé au prof)
-- Disk 
+- Disk ( A faire avec HDFS) sinon fait
 - Multi threadings (faut que tout soit fini sinon ca va etre relou) 
 - HDFS 
 
@@ -30,7 +27,7 @@ Statut -> 50% (changement de perimetre en fonction de la reponse du prof)
 
 - [10%] HDFS support
 
-Statut -> Question au prof en attente
+Statut -> Docker
 
 - [5%]  Disk support
 

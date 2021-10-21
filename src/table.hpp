@@ -15,6 +15,7 @@ public:
   {
     while (!m_cols.empty())
     {
+      cout<<"a"<<endl;
       delete m_cols.back();
       m_cols.pop_back();
     }

@@ -211,28 +211,19 @@ class ColChar : public ColBase
 
 public:
   int m_length;
-  vector<char *> values;
+  vector<string> values;
 
   ColChar(int length) { m_length = length; }
 
-  ~ColChar() {
-    int size=values.size();
-    for (int i=0;i<size;i++)
-      delete values[i];
-  }
+  ~ColChar() {}
 
-  vector<char *> get_values() { return values; }
+  vector<string> get_values() { return values; }
 
   void get_value(int i) { cout << values[i]; }
 
   int get_size() { return values.size(); }
 
-  void add_value(string val)
-  {
-    char *temp = new char[m_length];
-    strcpy(temp, val.c_str());
-    values.push_back(temp);
-  }
+  void add_value(string val) { values.push_back(val); }
   void add_value(char *val) { values.push_back(val); }
 
   void print_values()
@@ -242,7 +233,7 @@ public:
       cout << values[i] << endl;
     }
   }
-  void distinct()
+/*   void distinct()
   {
     vector<char *> tmp;
     tmp.push_back(values[0]);
@@ -258,20 +249,20 @@ public:
       }
     }
     values.assign(tmp.begin(), tmp.end());
-  }
+  } */
 
   int where(int i, string op, string val)
   {
     if (op == "=")
     {
-      if (strcmp(values[i], val.c_str()) == 0)
+      if (values[i].compare(val)==0)
         return 0;
       else
         return 1;
     }
     else if (op == "!=")
     {
-      if (strcmp(values[i], val.c_str()) != 0)
+      if (values[i].compare(val)!=0)
         return 0;
       else
         return 1;
