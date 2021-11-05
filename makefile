@@ -1,40 +1,20 @@
-# Definition of Particular Target
-.PHONY: clear
+DOCKER_NETWORK = docker-hadoop_default
+ENV_FILE = hadoop.env
+current_branch := $(shell git rev-parse --abbrev-ref HEAD)
+build:
+	docker build -t bde2020/hadoop-base:$(current_branch) ./base
+	docker build -t bde2020/hadoop-namenode:$(current_branch) ./namenode
+	docker build -t bde2020/hadoop-datanode:$(current_branch) ./datanode
+	docker build -t bde2020/hadoop-resourcemanager:$(current_branch) ./resourcemanager
+	docker build -t bde2020/hadoop-nodemanager:$(current_branch) ./nodemanager
+	docker build -t bde2020/hadoop-historyserver:$(current_branch) ./historyserver
+	docker build -t bde2020/hadoop-submit:$(current_branch) ./submit
 
-# Disabling fo implicit rules
-.SUFFIXES:
-
-CXX = g++
-CXXFLAGS = -Wall -Wextra -g -std=c++11
-
-# Object directory
-OBJ = obj
-
-# Sources
-SRC = src/
-
-all: make_dir main.out
-
-main.out: $(OBJ)/main.o $(OBJ)/col.o $(OBJ)/table.o 
-	$(CXX) $(CXXFLAGS) $^ -o $@
-
-$(OBJ)/main.o: $(SRC)/main.cpp $(SRC)/col.hpp $(SRC)/table.hpp 
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)/table.o: $(SRC)/table.hpp 
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)/col.o: $(SRC)/col.hpp 
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean: 
-	rm -r obj
-
-veryclean:
-	rm -r obj
-	rm *.out
-
-
-make_dir:
-	test -d $(OBJ) || mkdir -p $(OBJ)
-	test -d $(BIN) || mkdir -p $(BIN)
+wordcount:
+	docker build -t hadoop-wordcount ./submit
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -mkdir -p /input/
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -copyFromLocal -f /opt/hadoop-3.2.1/README.txt /input/
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} hadoop-wordcount
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -cat /output/*
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -rm -r /output
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -rm -r /input
